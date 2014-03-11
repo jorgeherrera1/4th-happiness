@@ -4,20 +4,28 @@ var _ = require('lodash');
 
 module.exports = function(grunt) {
 
-    var dirConfig = {
-        srcDir: 'src',
-        buildDir: 'build'
-    };
+    // load build config file
+    var buildConfig = require('./build.config.js');
 
+    // Grunt config object
     var taskConfig = {
 
         pkg: grunt.file.readJSON('package.json'),
 
-        clean: ['<%= buildDir%>'],
+        clean: [
+            '<%= buildDir%>',
+            '<%= distDir%>'
+        ],
+
+        copy: {
+
+        },
 
         watch: {
             js: {
-                files: ['Gruntfile.js', 'server.js', 'app/**/*.js'],
+                files: [
+                    '<%= clientDir.js%>'
+                ],
                 options: {
                     livereload: true
                 }
@@ -32,7 +40,7 @@ module.exports = function(grunt) {
     };
 
     // Project Configuration
-    grunt.initConfig(_.extend(taskConfig, dirConfig));
+    grunt.initConfig(_.extend(taskConfig, buildConfig));
 
     // Load NPM tasks
     grunt.loadNpmTasks('grunt-contrib-watch');
