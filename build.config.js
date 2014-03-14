@@ -8,7 +8,7 @@ module.exports = {
     // directory where the project is compiled for production (minified files)
     distDir: 'dist',
 
-    clientDir: {
+    clientSrc: {
         js: ['src/client/app/**/*.js'],
         html: 'src/client/index.html',
         less: 'src/client/less/main.less'

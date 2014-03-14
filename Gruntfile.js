@@ -17,38 +17,49 @@ module.exports = function(grunt) {
             '<%= distDir%>'
         ],
 
-        copy: {
-
-        },
-
-        watch: {
-            js: {
-                files: [
-                    '<%= clientDir.js%>'
-                ],
-                options: {
-                    livereload: true
+        // handles LESS compilation and uglification
+        less: {
+            build: {
+                files: {
+                    '<%= buildDir %>/css/<%= pkg.name %>.css': '<%= clientSrc.less %>'
                 }
             },
-            html: {
-                files: ['public/views/**', 'app/views/**'],
+            dist: {
+                files: {
+                    '<%= distDir %>/css/<%= pkg.name %>.css': '<%= clientSrc.less %>'
+                },
                 options: {
-                    livereload: true
+                    cleancss: true
                 }
             }
+        },
+
+        copy: {
+            buildFiles: {
+                files: [
+                    {
+                        src: ['<%= clientSrc.html %>'],
+                        dest: '<%= buildDir %>',
+                        expand: true,
+                        flatten: true
+                    }
+                ]
+            }
         }
+
     };
 
     // Project Configuration
     grunt.initConfig(_.extend(taskConfig, buildConfig));
 
     // Load NPM tasks
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-less');
 
     // Default task(s).
-    grunt.registerTask('build', ['clean'])
+    grunt.registerTask('build', ['clean', 'less:build'])
 
     grunt.registerTask('default', ['watch']);
 };
