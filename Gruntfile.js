@@ -1,32 +1,26 @@
 'use strict';
 
-var _ = require('lodash');
-
 module.exports = function(grunt) {
-
-    // load build config file
-    var buildConfig = require('./build.config.js');
 
     // Grunt config object
     var taskConfig = {
 
         pkg: grunt.file.readJSON('package.json'),
 
-        clean: [
-            '<%= buildDir%>',
-            '<%= distDir%>'
-        ],
+        clean: {
+            public: ['public']
+        },
 
         // handles LESS compilation and uglification
         less: {
-            build: {
+            development: {
                 files: {
-                    '<%= buildDir %>/css/<%= pkg.name %>.css': '<%= clientSrc.less %>'
+                    'public/css/4th-happiness.css': 'src/client/less/main.less'
                 }
             },
-            dist: {
+            production: {
                 files: {
-                    '<%= distDir %>/css/<%= pkg.name %>.css': '<%= clientSrc.less %>'
+                    'public/css/4th-happiness.css': 'src/client/less/main.less'
                 },
                 options: {
                     cleancss: true
@@ -35,31 +29,103 @@ module.exports = function(grunt) {
         },
 
         copy: {
-            buildFiles: {
+            html: {
                 files: [
                     {
-                        src: ['<%= clientSrc.html %>'],
-                        dest: '<%= buildDir %>',
+                        src: ['*.html', 'views/**/*.html'],
+                        dest: 'public',
                         expand: true,
-                        flatten: true
+                        cwd: 'src/client'
                     }
                 ]
+            },
+            images: {
+                files: [
+                    {
+                        src: ['images/*'],
+                        dest: 'public',
+                        expand: true,
+                        cwd: 'src/client'
+                    }
+                ]
+            },
+            fontawesome: {
+                files: [
+                    {
+                        src: ['fonts/*'],
+                        dest: 'public',
+                        expand: true,
+                        cwd: 'src/client/lib/font-awesome/'
+                    }
+                ]
+            }
+        },
+
+        nodemon: {
+            development: {
+                script: 'server.js',
+                options: {
+                    args: [],
+                    watch: ['public/**', 'src/server/**'],
+                    ignore: ['node_modules/**'],
+                    ext: 'js',
+                    nodeArgs: ['--debug'],
+                    delayTime: 1,
+                    env: {
+                        PORT: 3000
+                    },
+                    cwd: __dirname
+                }
+            }
+        },
+
+        watch: {
+            less: {
+                files: ['main.less'],
+                tasks: ['less:development'],
+                options: {
+                    cwd: 'src/client/less',
+                    livereload: true
+                }
+            },
+            html: {
+                files: ['*.html', 'views/**/*.html'],
+                tasks: ['newer:copy:html'],
+                options: {
+                    cwd: 'src/client',
+                    livereload: true
+                }
+            }
+        },
+
+        concurrent: {
+            tasks: ['nodemon', 'watch'],
+            options: {
+                logConcurrentOutput: true
             }
         }
 
     };
 
     // Project Configuration
-    grunt.initConfig(_.extend(taskConfig, buildConfig));
+    grunt.initConfig(taskConfig);
 
     // Load NPM tasks
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-newer');
 
     // Default task(s).
-    grunt.registerTask('build', ['clean', 'less:build'])
+    grunt.registerTask('development', [
+        'clean',
+        'less:development',
+        'copy',
+        'concurrent'
+    ]);
 
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('default', ['development']);
 };

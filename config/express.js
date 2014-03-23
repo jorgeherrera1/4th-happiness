@@ -30,6 +30,6 @@ module.exports = function(app) {
 
         // Setting the fav icon and static folder
         app.use(express.favicon());
-        app.use(express.static(path.join(config.root, '/build')));
+        app.use(express.static(path.join(config.root, '/public')));
     });
 }

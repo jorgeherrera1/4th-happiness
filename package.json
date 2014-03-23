@@ -1,32 +1,35 @@
 {
-  "name": "4th-happiness",
-  "description": "4th Source Happiness Index",
-  "version": "0.0.1",
-  "private": "true",
-  "author": "Jorge Herrera",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jorgeherrera1/4th-happiness.git"
-  },
-  "bugs": {
-    "url": "https://github.com/jorgeherrera1/4th-happiness/issues",
-    "email": "jorge.herrera.cabrera@gmail.com"
-  },
-  "engines": {
-    "node": "0.10.x",
-    "npm": "1.3.x"
-  },
-  "dependencies": {
-    "express": "*",
-    "mongoose": "*",
-    "lodash": "*"
-  },
-  "devDependencies": {
-    "bower": "~1.3.1",
-    "grunt": "~0.4.4",
-    "grunt-contrib-watch": "~0.6.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-less": "~0.10.0"
-  }
+    "name": "4th-happiness",
+    "description": "4th Source Happiness Index",
+    "version": "0.0.1",
+    "private": "true",
+    "author": "Jorge Herrera",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jorgeherrera1/4th-happiness.git"
+    },
+    "bugs": {
+        "url": "https://github.com/jorgeherrera1/4th-happiness/issues",
+        "email": "jorge.herrera.cabrera@gmail.com"
+    },
+    "engines": {
+        "node": "0.10.x",
+        "npm": "1.3.x"
+    },
+    "dependencies": {
+        "express": "*",
+        "mongoose": "*",
+        "lodash": "*"
+    },
+    "devDependencies": {
+        "bower": "~1.3.1",
+        "grunt": "~0.4.4",
+        "grunt-contrib-watch": "~0.6.0",
+        "grunt-contrib-clean": "~0.5.0",
+        "grunt-contrib-copy": "~0.5.0",
+        "grunt-contrib-less": "~0.10.0",
+        "grunt-concurrent": "~0.5.0",
+        "grunt-nodemon": "~0.2.1",
+        "grunt-newer": "~0.7.0"
+    }
 }
