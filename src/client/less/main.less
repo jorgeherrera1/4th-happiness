@@ -1,30 +1,50 @@
 @import "../lib/bootstrap/less/bootstrap.less";
 @import "../lib/font-awesome/less/font-awesome.less";
-@import url(http://fonts.googleapis.com/css?family=Duru+Sans);
+@import url(http://fonts.googleapis.com/css?family=Inconsolata);
 
-@brand-primary: #003399;
+@brand-primary: #135290;
 @body-bg: #003366;
 @text-color: #677179;
-@font-size-base: 24px;
-@font-family-sans-serif: "Duru Sans", Helvetica, Arial, sans-serif;
+@font-size-base: 18px;
+@font-family-monospace: "Inconsolata", Monaco, Consolas, "Courier New", monospace;
+@font-family-base: @font-family-monospace;
 
 body {
   margin-top: 25px;
 }
 
-.happines-header {
+.happiness-header {
   .make-row();
 
-  .happines-header-logo {
+  .happiness-header-logo {
     .make-md-column(4);
     .make-md-column-push(8);
   }
 }
 
-.happines-welcome {
+.happiness-welcome {
   .make-row();
 
-  .happines-welcome-msg {
+  .happiness-welcome-msg {
     .make-md-column(12);
+  }
+}
+
+.happiness-login {
+  .make-row();
+
+  .happiness-login-form {
+    max-width: 400px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    border: 1px solid #677179;
+    background-color: lighten(#677179, 50%);
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+
+    input[type="email"], input[type="password"] {
+      margin-bottom: 15px;
+      padding: 7px 9px;
+    }
   }
 }
