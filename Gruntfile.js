@@ -49,15 +49,25 @@ module.exports = function(grunt) {
                     }
                 ]
             },
-            fontawesome: {
+            fonts: {
                 files: [
                     {
                         src: ['fonts/*'],
                         dest: 'public',
                         expand: true,
-                        cwd: 'src/client/lib/font-awesome/'
+                        cwd: 'src/client/lib/bootstrap'
                     }
                 ]
+            }
+        },
+
+        concat: {
+            developmentLib: {
+                src: [
+                    'src/client/lib/jquery/dist/jquery.js',
+                    'src/client/lib/bootstrap/dist/js/bootstrap.js'
+                ],
+                dest: 'public/js/4th-happiness-lib.js'
             }
         },
 
@@ -118,12 +128,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-newer');
+    grunt.loadNpmTasks('grunt-contrib-concat');
 
     // Default task(s).
     grunt.registerTask('development', [
         'clean',
-        'less:development',
         'copy',
+        'less:development',
+        'concat:developmentLib',
         'concurrent'
     ]);
 
