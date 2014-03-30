@@ -3,8 +3,7 @@
 // Module dependencies
 var express = require('express'),
     path = require('path'),
-    config = require('./config'),
-    appPath = process.cwd();
+    config = require('./config');
 
 module.exports = function(app) {
     app.configure('development', function(){
@@ -29,7 +28,9 @@ module.exports = function(app) {
         // Routes should be at the last
         app.use(app.router);
 
-        require(appPath + '/src/server/routes/users')(app);
+        require(path.join(config.root, '/src/server/models/questions'));
+        require(path.join(config.root, '/src/server/routes/users'))(app);
+        require(path.join(config.root, '/src/server/routes/questions'))(app);
 
         // Setting the fav icon and static folder
         app.use(express.favicon());

@@ -15,8 +15,8 @@ happinessApp.controller('loginCtrl', ['$scope', '$rootScope', '$http', '$locatio
         };
     }]);
 
-happinessApp.controller('questionsCtrl', ['$scope',
-    function($scope) {
+happinessApp.controller('questionsCtrl', ['$scope', 'questionsService',
+    function($scope, questionsService) {
         // defauts
         $scope.questions = {
             howHappyAreYouInYourTeam: 1,
@@ -27,7 +27,17 @@ happinessApp.controller('questionsCtrl', ['$scope',
         };
 
         $scope.submit = function() {
-            console.log('data submitted');
+            var successCallback = function() {
+
+            };
+
+            var errorCallback = function() {
+
+            };
+
+            questionsService.submit($scope.questions)
+                .success(successCallback)
+                .error(errorCallback);
         }
     }]);
 
