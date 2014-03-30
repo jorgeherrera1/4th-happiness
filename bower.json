@@ -1,11 +1,13 @@
 {
-    "name": "4th-happiness",
-    "version": "0.0.1",
-    "devDependencies": {
-        "bootstrap": "latest"
-    },
-    "dependencies": {
-        "html5shiv": "latest",
-        "respond": "latest"
-    }
+  "name": "4th-happiness",
+  "version": "0.0.1",
+  "devDependencies": {
+    "bootstrap": "latest"
+  },
+  "dependencies": {
+    "angular": "latest",
+    "html5shiv": "latest",
+    "respond": "latest",
+    "angular-route": "~1.2.15"
+  }
 }

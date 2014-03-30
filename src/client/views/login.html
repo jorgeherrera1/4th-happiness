@@ -1,42 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>4th Source | Happiness</title>
-
-    <link rel="icon" type="image/x-icon" href="../images/thermometer.ico">
-    <link rel="stylesheet" href="../css/4th-happiness.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-<div class="container">
-    <div class="happiness-header">
-        <div class="happiness-header-logo">
-            <img src="../images/logo.png">
-        </div>
-    </div>
-    <div class="happiness-welcome">
-        <div class="happiness-welcome-msg text-center">
-            <h1>var happiness = evaluate();</h1>
-        </div>
-    </div>
-    <div class="happiness-login">
-        <div class="happiness-login-form">
-            <form role="form">
-                <h4>Please Sign In</h4>
-                <input type="email" class="form-control" id="email" placeholder="Email address" autocomplete="off" autofocus>
-                <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="off">
-                <button class="btn btn-large btn-primary" type="submit">Sign in</button>
-            </form>
-        </div>
+<div class="happiness-login">
+    <div class="happiness-login-form">
+        <form data-ng-submit="login()" role="form">
+            <h4>Please Sign In</h4>
+            <input type="email" data-ng-model="user.email" class="form-control" id="email" placeholder="Email address" required autocomplete="off" autofocus>
+            <input type="password" data-ng-model="user.password" class="form-control" id="password" placeholder="Password" required autocomplete="off">
+            <button class="btn btn-large btn-primary" type="submit">Log in</button>
+        </form>
     </div>
 </div>
-</body>
-</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="happinessApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,16 +30,9 @@
             <h1>var happiness = evaluate();</h1>
         </div>
     </div>
-    <div class="happiness-login">
-        <div class="happiness-login-form">
-            <form role="form">
-                <h4>Please Sign In</h4>
-                <input type="email" class="form-control" id="email" placeholder="Email address" autocomplete="off" autofocus>
-                <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="off">
-                <button class="btn btn-large btn-primary" type="submit">Sign in</button>
-            </form>
-        </div>
-    </div>
+    <div data-ng-view></div>
+    <script src="js/4th-happiness-lib.js"></script>
+    <script src="js/4th-happiness.js"></script>
 </div>
 </body>
 </html>

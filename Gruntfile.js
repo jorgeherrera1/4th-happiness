@@ -79,9 +79,19 @@ module.exports = function(grunt) {
             developmentLib: {
                 src: [
                     'src/client/lib/jquery/dist/jquery.js',
-                    'src/client/lib/bootstrap/dist/js/bootstrap.js'
+                    'src/client/lib/bootstrap/dist/js/bootstrap.js',
+                    'src/client/lib/angular/angular.js',
+                    'src/client/lib/angular-route/angular-route.js'
                 ],
                 dest: 'public/js/4th-happiness-lib.js'
+            },
+            development: {
+                src: [
+                    'src/client/js/app.js',
+                    'src/client/js/controllers.js',
+                    'src/client/js/services.js',
+                ],
+                dest: 'public/js/4th-happiness.js'
             }
         },
 
@@ -119,6 +129,14 @@ module.exports = function(grunt) {
                     cwd: 'src/client',
                     livereload: true
                 }
+            },
+            js: {
+                files: ['*.js'],
+                tasks: ['concat:development'],
+                options: {
+                    cwd: 'src/client/js',
+                    livereload: true
+                }
             }
         },
 
@@ -150,6 +168,7 @@ module.exports = function(grunt) {
         'copy',
         'less:development',
         'concat:developmentLib',
+        'concat:development',
         'concurrent'
     ]);
 
