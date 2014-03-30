@@ -90,6 +90,7 @@ module.exports = function(grunt) {
                     'src/client/js/app.js',
                     'src/client/js/controllers.js',
                     'src/client/js/services.js',
+                    'src/client/js/directives.js',
                 ],
                 dest: 'public/js/4th-happiness.js'
             }

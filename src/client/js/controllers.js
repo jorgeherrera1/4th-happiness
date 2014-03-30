@@ -14,3 +14,20 @@ happinessApp.controller('loginCtrl', ['$scope', '$rootScope', '$http', '$locatio
                 .error(errorCallback);
         };
     }]);
+
+happinessApp.controller('questionsCtrl', ['$scope',
+    function($scope) {
+        // defauts
+        $scope.questions = {
+            howHappyAreYouInYourTeam: 1,
+            howHappyAreYouWithTheCompany: 1,
+            whatMakesYouFeelBest: '',
+            whatMakesYouFeelWorst: '',
+            whatWouldIncreaseYourHappiness: ''
+        };
+
+        $scope.submit = function() {
+            console.log('data submitted');
+        }
+    }]);
+

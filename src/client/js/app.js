@@ -9,6 +9,7 @@ var happinessApp = angular.module('happinessApp', ['ngRoute'])
                 controller: 'loginCtrl'
             })
             .when('/questions', {
-                templateUrl: 'views/questions.html'
+                templateUrl: 'views/questions.html',
+                controller: 'questionsCtrl'
             })
     }]);

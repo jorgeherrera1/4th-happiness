@@ -5,12 +5,14 @@
         <li data-target="#questions" data-slide-to="2"></li>
         <li data-target="#questions" data-slide-to="3"></li>
         <li data-target="#questions" data-slide-to="4"></li>
+        <li data-target="#questions" data-slide-to="5"></li>
     </ol>
     <div class="carousel-inner">
         <div class="item active">
             <div class="container">
                 <div class="carousel-caption">
                     <h3>How happy are you in your team?</h3>
+                    <div data-happiness-rating data-ng-model="questions.howHappyAreYouInYourTeam"></div>
                 </div>
             </div>
         </div>
@@ -18,6 +20,7 @@
             <div class="container">
                 <div class="carousel-caption">
                     <h3>How happy are you with the company?</h3>
+                    <div data-happiness-rating data-ng-model="questions.howHappyAreYouWithTheCompany"></div>
                 </div>
             </div>
         </div>
@@ -25,6 +28,7 @@
             <div class="container">
                 <div class="carousel-caption">
                     <h3>What makes you feel best right now?</h3>
+                    <textarea data-ng-model="questions.whatMakesYouFeelBest" required rows="3" cols="40"></textarea>
                 </div>
             </div>
         </div>
@@ -32,6 +36,7 @@
             <div class="container">
                 <div class="carousel-caption">
                     <h3>What makes you feel worst right now?</h3>
+                    <textarea data-ng-model="questions.whatMakesYouFeelWorst" required rows="3" cols="40"></textarea>
                 </div>
             </div>
         </div>
@@ -39,6 +44,16 @@
             <div class="container">
                 <div class="carousel-caption">
                     <h3>What would increase your happiness?</h3>
+                    <textarea data-ng-model="questions.whatWouldIncreaseYourHappiness" required rows="3" cols="40"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h2>THANK YOU!!!</h2>
+                    <h4>If you are ready, please click on</h4>
+                    <button data-ng-click="submit()" class="btn btn-large btn-primary" type="submit">Submit</button>
                 </div>
             </div>
         </div>
