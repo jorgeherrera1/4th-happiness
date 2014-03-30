@@ -58,6 +58,20 @@ module.exports = function(grunt) {
                         cwd: 'src/client/lib/bootstrap'
                     }
                 ]
+            },
+            lib: {
+                files: [
+                    {
+                        src: [
+                            'html5shiv/dist/html5shiv.js',
+                            'respond/dest/respond.min.js'
+                        ],
+                        dest: 'public/js',
+                        expand: true,
+                        flatten: true,
+                        cwd: 'src/client/lib'
+                    }
+                ]
             }
         },
 
