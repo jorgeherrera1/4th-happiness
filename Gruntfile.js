@@ -101,7 +101,7 @@ module.exports = function(grunt) {
                 script: 'server.js',
                 options: {
                     args: [],
-                    watch: ['public/**', 'src/server/**'],
+                    watch: ['public/**', 'server/**'],
                     ignore: ['node_modules/**'],
                     ext: 'js',
                     nodeArgs: ['--debug'],

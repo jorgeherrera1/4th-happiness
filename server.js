@@ -1,15 +1,16 @@
 'use strict';
 
 // Module dependencies
-var express = require('express');
+var express = require('express'),
+    mongoose = require('mongoose'),
+    passport = require('passport');
 
 // Load configurations
 // Set the node environment variable if not set before
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Initializing system variables
-var config = require('./config/config'),
-    mongoose = require('mongoose');
+var config = require('./server/config/config');
 
 // Bootstrap db connection
 var db = mongoose.connect(config.db);
@@ -17,14 +18,16 @@ var db = mongoose.connect(config.db);
 // Create Express app
 var app = express();
 
+// Passport settings
+require('./server/config/passport')(passport);
+
 // Express settings
-require('./config/express')(app);
+require('./server/config/express')(app, passport);
 
 // Start the app by listening on <port>
-var port = process.env.PORT || config.port;
-app.listen(port);
+app.listen(config.port);
 
-console.log('4th Happiness started on port ' + port);
+console.log('4th Happiness started on port ' + config.port);
 
 // Expose app
 exports = module.exports = app;

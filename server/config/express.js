@@ -5,7 +5,7 @@ var express = require('express'),
     path = require('path'),
     config = require('./config');
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
     app.configure('development', function(){
         app.use(express.errorHandler());
 
@@ -25,12 +25,16 @@ module.exports = function(app) {
         app.use(express.json());
         app.use(express.methodOverride());
 
+        // Use passport session
+        app.use(passport.initialize());
+
         // Routes should be at the last
         app.use(app.router);
 
-        require(path.join(config.root, '/src/server/models/questions'));
-        require(path.join(config.root, '/src/server/routes/users'))(app);
-        require(path.join(config.root, '/src/server/routes/questions'))(app);
+        require(path.join(config.root, '/server/models/questions'));
+
+        require(path.join(config.root, '/server/routes/users'))(app, passport);
+        require(path.join(config.root, '/server/routes/questions'))(app);
 
         // Setting the fav icon and static folder
         app.use(express.favicon());
