@@ -15,12 +15,12 @@ module.exports = function(grunt) {
         less: {
             development: {
                 files: {
-                    'public/css/4th-happiness.css': 'src/client/less/main.less'
+                    'public/css/4th-happiness.css': 'client/less/main.less'
                 }
             },
             production: {
                 files: {
-                    'public/css/4th-happiness.css': 'src/client/less/main.less'
+                    'public/css/4th-happiness.css': 'client/less/main.less'
                 },
                 options: {
                     cleancss: true
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                         src: ['*.html', 'views/**/*.html'],
                         dest: 'public',
                         expand: true,
-                        cwd: 'src/client'
+                        cwd: 'client'
                     }
                 ]
             },
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
                         src: ['images/*'],
                         dest: 'public',
                         expand: true,
-                        cwd: 'src/client'
+                        cwd: 'client'
                     }
                 ]
             },
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
                         src: ['fonts/*'],
                         dest: 'public',
                         expand: true,
-                        cwd: 'src/client/lib/bootstrap'
+                        cwd: 'client/lib/bootstrap'
                     }
                 ]
             },
@@ -69,7 +69,7 @@ module.exports = function(grunt) {
                         dest: 'public/js',
                         expand: true,
                         flatten: true,
-                        cwd: 'src/client/lib'
+                        cwd: 'client/lib'
                     }
                 ]
             }
@@ -78,19 +78,19 @@ module.exports = function(grunt) {
         concat: {
             developmentLib: {
                 src: [
-                    'src/client/lib/jquery/dist/jquery.js',
-                    'src/client/lib/bootstrap/dist/js/bootstrap.js',
-                    'src/client/lib/angular/angular.js',
-                    'src/client/lib/angular-route/angular-route.js'
+                    'client/lib/jquery/dist/jquery.js',
+                    'client/lib/bootstrap/dist/js/bootstrap.js',
+                    'client/lib/angular/angular.js',
+                    'client/lib/angular-route/angular-route.js'
                 ],
                 dest: 'public/js/4th-happiness-lib.js'
             },
             development: {
                 src: [
-                    'src/client/js/app.js',
-                    'src/client/js/controllers.js',
-                    'src/client/js/services.js',
-                    'src/client/js/directives.js',
+                    'client/js/app.js',
+                    'client/js/controllers.js',
+                    'client/js/services.js',
+                    'client/js/directives.js',
                 ],
                 dest: 'public/js/4th-happiness.js'
             }
@@ -119,7 +119,7 @@ module.exports = function(grunt) {
                 files: ['main.less'],
                 tasks: ['less:development'],
                 options: {
-                    cwd: 'src/client/less',
+                    cwd: 'client/less',
                     livereload: true
                 }
             },
@@ -127,7 +127,7 @@ module.exports = function(grunt) {
                 files: ['*.html', 'views/**/*.html'],
                 tasks: ['newer:copy:html'],
                 options: {
-                    cwd: 'src/client',
+                    cwd: 'client',
                     livereload: true
                 }
             },
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
                 files: ['*.js'],
                 tasks: ['concat:development'],
                 options: {
-                    cwd: 'src/client/js',
+                    cwd: 'client/js',
                     livereload: true
                 }
             }

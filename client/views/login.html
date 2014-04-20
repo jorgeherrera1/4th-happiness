@@ -1,0 +1,15 @@
+<div class="happiness-login">
+    <div class="happiness-login-form">
+        <form data-ng-submit="login()" role="form">
+            <div class="alert alert-danger animated fadeIn" ng-show="loginError">{{loginError}}</div>
+            <h4>Please Log In</h4>
+            <div class="form-group">
+                <input type="email" data-ng-model="user.email" class="form-control" id="email" placeholder="Email address" required autocomplete="off" autofocus>
+            </div>
+            <div class="form-group">
+                <input type="password" data-ng-model="user.password" class="form-control" id="password" placeholder="Password" required autocomplete="off">
+            </div>
+            <button class="btn btn-large btn-primary" type="submit">Log In</button>
+        </form>
+    </div>
+</div>
