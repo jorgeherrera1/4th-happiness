@@ -1,5 +1,5 @@
 var happinessApp = angular.module('happinessApp', ['ngRoute'])
-    .config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
         $routeProvider
             .when('/login', {
                 templateUrl: 'views/login.html',
@@ -12,10 +12,12 @@ var happinessApp = angular.module('happinessApp', ['ngRoute'])
             .otherwise({
                 redirectTo: '/login'
             });
+
+        $httpProvider.interceptors.push('authInterceptor');
     }])
-    .run(['$rootScope', '$location', 'authService', function($rootScope, $location, authService) {
+    .run(['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
-            if (!authService.isLoggedIn()) {
+            if (!$window.sessionStorage.token) {
                 $location.path('/login');
             }
         });
