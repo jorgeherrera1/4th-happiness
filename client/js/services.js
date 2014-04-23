@@ -1,7 +1,19 @@
-happinessApp.factory('loginService', ['$http', function($http) {
+happinessApp.factory('authService', ['$http', '$window', function($http, $window) {
     return {
         login: function(user) {
             return $http.post('/login', user);
+        },
+
+        logout: function(user) {
+
+        },
+
+        isLoggedIn: function() {
+            if ($window.sessionStorage.token) {
+                return true;
+            }
+
+            return false;
         }
     };
 }]);

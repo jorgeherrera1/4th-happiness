@@ -9,5 +9,5 @@ module.exports = {
     db: process.env.MONGOHQ_URL,
     mailHost: 'pop.4thsource.com',
     mailPort: 110,
-    sessionSecret: 'TheSecretOfHappiness'
+    secret: 'TheSecretOfHappiness'
 };

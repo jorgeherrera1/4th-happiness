@@ -3,6 +3,7 @@
 // Module dependencies
 var express = require('express'),
     path = require('path'),
+    expressJwt = require('express-jwt'),
     config = require('./config');
 
 module.exports = function(app, passport) {
@@ -27,6 +28,9 @@ module.exports = function(app, passport) {
 
         // Use passport session
         app.use(passport.initialize());
+
+        // We are going to protect /api routes with JWT
+        app.use('/api', expressJwt({secret: config.secret}));
 
         // Routes should be at the last
         app.use(app.router);

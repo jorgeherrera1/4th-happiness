@@ -1,31 +1,41 @@
 happinessApp.controller('mainCtrl', ['$scope',
     function($scope) {
-
+        $scope.loggedInUser = '';
     }]);
 
-happinessApp.controller('loginCtrl', ['$scope', '$window', '$location', 'loginService',
-    function($scope, $window, $location, loginService) {
+happinessApp.controller('authCtrl', ['$scope', '$window', '$location', 'authService',
+    function($scope, $window, $location, authService) {
+        $scope.loginError = '';
+
         $scope.login = function() {
             var successCallback = function(data, status, headers, config) {
                 $window.sessionStorage.token = data.token;
+
+                $scope.loginError = '';
+                $scope.$parent.loggedInUser = $scope.user.email;
+
                 $location.path('/questions');
             };
 
             var errorCallback = function (data, status, headers, config) {
                 // Erase the token if the user fails to log in
                 delete $window.sessionStorage.token;
-                $scope.loginError = 'Invalid username or password';
+
+                $scope.loginError = 'Invalid email or password';
+                $scope.$parent.loggedInUser = '';
             };
 
-            loginService.login($scope.user)
+            authService.login($scope.user)
                 .success(successCallback)
                 .error(errorCallback);
         };
 
         $scope.logout = function() {
-            delete $scope.user.password;
-            delete $scope.loginMessage;
             delete $window.sessionStorage.token;
+
+            $scope.loginError = '';
+            $scope.$parent.loggedInUser = '';
+
             $location.path('/login');
         };
     }]);
