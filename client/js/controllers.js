@@ -2,11 +2,16 @@ happinessApp.controller('mainCtrl', ['$scope', '$window', '$location',
     function($scope, $window, $location) {
         $scope.loggedInUser = '';
 
-        $scope.logout = function() {
+        $scope.logout = function(redirectTo) {
+            var path = 'login';
+            if (redirectTo) {
+                path = redirectTo;
+            }
+
             delete $window.sessionStorage.token;
             $scope.loggedInUser = '';
 
-            $location.path('/login');
+            $location.path('/' + path);
         };
     }]);
 
@@ -51,11 +56,11 @@ happinessApp.controller('questionsCtrl', ['$scope', 'questionsService',
 
         $scope.submit = function() {
             var successCallback = function() {
-
+                $scope.$parent.logout('thanks');
             };
 
             var errorCallback = function() {
-
+                $scope.$parent.logout('thanks');
             };
 
             questionsService.submit($scope.questions)

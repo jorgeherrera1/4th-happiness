@@ -9,6 +9,9 @@ var happinessApp = angular.module('happinessApp', ['ngRoute'])
                 templateUrl: 'views/questions.html',
                 controller: 'questionsCtrl'
             })
+            .when('/thanks', {
+                templateUrl: 'views/thanks.html'
+            })
             .otherwise({
                 redirectTo: '/login'
             });
@@ -17,7 +20,7 @@ var happinessApp = angular.module('happinessApp', ['ngRoute'])
     }])
     .run(['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
-            if (!$window.sessionStorage.token) {
+            if (!$window.sessionStorage.token && next.originalPath != '/thanks') {
                 $location.path('/login');
             }
         });
