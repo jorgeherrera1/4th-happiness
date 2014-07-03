@@ -44,4 +44,4 @@ var QuestionsSchema = new Schema({
     }
 });
 
-mongoose.model('Questions', QuestionsSchema);
+mongoose.model('HappinessQuestions', QuestionsSchema);
