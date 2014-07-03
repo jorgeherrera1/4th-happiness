@@ -93,6 +93,24 @@ module.exports = function(grunt) {
                     'client/js/directives.js',
                 ],
                 dest: 'public/js/4th-happiness.js'
+            },
+            productionLib: {
+                src: [
+                    'client/lib/jquery/dist/jquery.min.js',
+                    'client/lib/bootstrap/dist/js/bootstrap.min.js',
+                    'client/lib/angular/angular.min.js',
+                    'client/lib/angular-route/angular-route.min.js'
+                ],
+                dest: 'public/js/4th-happiness-lib.js'
+            },
+            production: {
+                src: [
+                    'client/js/app.js',
+                    'client/js/controllers.js',
+                    'client/js/services.js',
+                    'client/js/directives.js',
+                ],
+                dest: 'public/js/4th-happiness.js'
             }
         },
 
@@ -171,6 +189,14 @@ module.exports = function(grunt) {
         'concat:developmentLib',
         'concat:development',
         'concurrent'
+    ]);
+
+    grunt.registerTask('production', [
+        'clean',
+        'copy',
+        'less:production',
+        'concat:productionLib',
+        'concat:production',
     ]);
 
     grunt.registerTask('default', ['development']);

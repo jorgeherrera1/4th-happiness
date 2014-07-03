@@ -1,5 +1,5 @@
 .DS_Store
-.idea/
-node_modules/
-public/
-client/lib/
+.idea
+node_modules
+public
+client/lib
