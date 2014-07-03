@@ -4,7 +4,7 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'),
-    Questions = mongoose.model('Questions');
+    Questions = mongoose.model('HappinessQuestions');
 
 /**
  * Create user
