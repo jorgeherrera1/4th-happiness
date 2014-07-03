@@ -21,8 +21,9 @@
 <body data-ng-controller="mainCtrl">
 <div class="container">
     <div class="happiness-header">
-        <div data-ng-show="loggedInUser" class="happines-header-user">
-            Hi, {{loggedInUser}}
+        <div class="happiness-header-user">
+            <span data-ng-if="loggedInUser">Hi, {{loggedInUser}} <button data-ng-click="logout()" class="btn btn-xs" type="button">Log Out</button></span>
+            <span data-ng-if="!loggedInUser">Hi, 4th Sourcian</span>
         </div>
         <div class="happiness-header-logo">
             <img src="images/logo.png">

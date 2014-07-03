@@ -1,6 +1,13 @@
-happinessApp.controller('mainCtrl', ['$scope',
-    function($scope) {
+happinessApp.controller('mainCtrl', ['$scope', '$window', '$location',
+    function($scope, $window, $location) {
         $scope.loggedInUser = '';
+
+        $scope.logout = function() {
+            delete $window.sessionStorage.token;
+            $scope.loggedInUser = '';
+
+            $location.path('/login');
+        };
     }]);
 
 happinessApp.controller('authCtrl', ['$scope', '$window', '$location', 'authService',
@@ -28,15 +35,6 @@ happinessApp.controller('authCtrl', ['$scope', '$window', '$location', 'authServ
             authService.login($scope.user)
                 .success(successCallback)
                 .error(errorCallback);
-        };
-
-        $scope.logout = function() {
-            delete $window.sessionStorage.token;
-
-            $scope.loginError = '';
-            $scope.$parent.loggedInUser = '';
-
-            $location.path('/login');
         };
     }]);
 
