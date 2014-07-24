@@ -8,6 +8,7 @@
   
     $ cd happiness-4th/
     $ npm install
+    $ bower install
 
 ## Run (development mode)
   When the project is run on development mode, source files are watched by grunt. When a file changes, grunt will run all tasks associated to that file and "redeploy" for immediate testing.
