@@ -20,7 +20,7 @@ happinessApp.directive('happinessRating', function() {
         }],
         link: function(scope, elem, attrs) {
             angular.forEach(elem.children(), function(star, index) {
-                star.addEventListener('click', function() {
+                $(star).click(function() {
                     var rating = index + 1; // index is zero based
 
                     scope.setRating(rating);
