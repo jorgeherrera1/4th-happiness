@@ -11,12 +11,11 @@ happinessApp.controller('questionsCtrl', ['$scope', '$location', 'questionsServi
 
         $scope.submit = function() {
             var cb = function() {
-                $location.path('/');
+                $location.path('/thanks');
             };
 
             questionsService.submit($scope.questions)
-                .success(cb)
-                .error(cb);
+                .success(cb);
         }
     }]);
 
