@@ -1,50 +1,5 @@
-happinessApp.controller('mainCtrl', ['$scope', '$window', '$location',
-    function($scope, $window, $location) {
-        $scope.loggedInUser = '';
-
-        $scope.logout = function(redirectTo) {
-            var path = 'login';
-            if (redirectTo) {
-                path = redirectTo;
-            }
-
-            delete $window.sessionStorage.token;
-            $scope.loggedInUser = '';
-
-            $location.path('/' + path);
-        };
-    }]);
-
-happinessApp.controller('authCtrl', ['$scope', '$window', '$location', 'authService',
-    function($scope, $window, $location, authService) {
-        $scope.loginError = '';
-
-        $scope.login = function() {
-            var successCallback = function(data, status, headers, config) {
-                $window.sessionStorage.token = data.token;
-
-                $scope.loginError = '';
-                $scope.$parent.loggedInUser = $scope.user.email;
-
-                $location.path('/questions');
-            };
-
-            var errorCallback = function (data, status, headers, config) {
-                // Erase the token if the user fails to log in
-                delete $window.sessionStorage.token;
-
-                $scope.loginError = 'Invalid email or password';
-                $scope.$parent.loggedInUser = '';
-            };
-
-            authService.login($scope.user)
-                .success(successCallback)
-                .error(errorCallback);
-        };
-    }]);
-
-happinessApp.controller('questionsCtrl', ['$scope', 'questionsService',
-    function($scope, questionsService) {
+happinessApp.controller('questionsCtrl', ['$scope', '$location', 'questionsService',
+    function($scope, $location, questionsService) {
         // defauts
         $scope.questions = {
             howHappyAreYouInYourTeam: 1,
@@ -55,17 +10,13 @@ happinessApp.controller('questionsCtrl', ['$scope', 'questionsService',
         };
 
         $scope.submit = function() {
-            var successCallback = function() {
-                $scope.$parent.logout('thanks');
-            };
-
-            var errorCallback = function() {
-                $scope.$parent.logout('thanks');
+            var cb = function() {
+                $location.path('/');
             };
 
             questionsService.submit($scope.questions)
-                .success(successCallback)
-                .error(errorCallback);
+                .success(cb)
+                .error(cb);
         }
     }]);
 

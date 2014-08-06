@@ -2,8 +2,7 @@
 
 // Module dependencies
 var express = require('express'),
-    mongoose = require('mongoose'),
-    passport = require('passport');
+    mongoose = require('mongoose');
 
 // Load configurations
 // Set the node environment variable if not set before
@@ -18,11 +17,8 @@ var db = mongoose.connect(config.db);
 // Create Express app
 var app = express();
 
-// Passport settings
-require('./server/config/passport')(passport);
-
 // Express settings
-require('./server/config/express')(app, passport);
+require('./server/config/express')(app);
 
 // Start the app by listening on <port>
 app.listen(config.port);
