@@ -41,6 +41,10 @@ var QuestionsSchema = new Schema({
         default: '',
         trim: true,
         required: true
+    },
+    dateEntered: {
+        type: Date,
+        default: Date.now,
     }
 });
 
